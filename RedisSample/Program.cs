@@ -19,11 +19,11 @@ namespace SampleProject
                                                 Config.redis_pass, 
                                                 Config.redis_default_db);
 
-            redis.RedisString(redis);
+            redis.RedisString();
 
-            redis.Redishash(redis);
+            redis.Redishash();
 
-            redis.RedisSet(redis);
+            redis.RedisSet();
 
         }
 
