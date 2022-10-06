@@ -11,7 +11,7 @@ namespace SampleProject
         public IDatabase redisDatabase;
         public IServer redisServer;
 
-        public RedisSample(string host, int port, string pass, string db)
+        public RedisSample(string host, string port, string pass, string db)
         {
             this._conntction = ConnectionMultiplexer.Connect(host + ":" + port + ",password=" + pass+ ",DefaultDatabase=" + db);
             if (_conntction.IsConnected)

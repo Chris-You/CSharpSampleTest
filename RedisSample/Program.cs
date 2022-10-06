@@ -2,6 +2,8 @@
 using StackExchange.Redis;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace SampleProject
 {
@@ -11,42 +13,47 @@ namespace SampleProject
         {
             Console.WriteLine("===== REDIS Sample World! =====");
 
-            RedisTest();
-            
-        }
-
-
-
-        public static void RedisTest()
-        {
-
-            string ip = Constant.redis_ip;
-            int port = Constant.redis_port;
-            string pass = Constant.redis_pass;
-            string db = Constant.redis_default_db;
+            string ip = Config.redis_ip;
+            string port = Config.redis_port;
+            string pass = Config.redis_pass;
+            string db = Config.redis_default_db;
 
 
             RedisSample redis = new RedisSample(ip, port, pass, db);
 
+            
+            RedisString(redis);
+
+            Redishash(redis);
+
+            RedisSet(redis);
+
+        }
+
+
+        public static void RedisString(RedisSample redis)
+        {
 
             Console.WriteLine("########### string type ###########");
             redis.redisDatabase.StringSet("stringkey", "hello world");
             Console.WriteLine(redis.redisDatabase.StringGet("stringkey"));
             redis.redisDatabase.StringSet("stringkey", "hello korea");
             Console.WriteLine(redis.redisDatabase.StringGet("stringkey"));
-            
+
             redis.redisDatabase.StringAppend("stringkey", ", hello Sir!");
             Console.WriteLine(redis.redisDatabase.StringGet("stringkey"));
 
-            
             Console.WriteLine("string del >" + redis.redisDatabase.StringGetDelete("stringkey"));
             Console.WriteLine("string del after >" + redis.redisDatabase.StringGet("stringkey"));
 
-            
+        }
 
+
+        public static void Redishash(RedisSample redis)
+        {
 
             HashEntry[] hash =
-            {
+           {
                 new HashEntry("name", "ChrisWorld"),
                 new HashEntry("email", "helloworld@naver.com"),
                 new HashEntry("tel", "+82-000-0000-1111")
@@ -90,8 +97,11 @@ namespace SampleProject
                 Console.WriteLine(i.Name + ">" + i.Value);
             }
 
+        }
 
-            Console.WriteLine("");
+
+        public static void RedisSet(RedisSample redis)
+        {
             Console.WriteLine("########### set type ###########");
             redis.redisDatabase.SetAdd("set", "comment1");
             redis.redisDatabase.SetAdd("set", "comment2");
@@ -109,26 +119,26 @@ namespace SampleProject
 
             Console.WriteLine("");
             Console.WriteLine("########### sorted Set ###########");
-            
 
-            for(int i=0; i<5; i++)
+
+            for (int i = 0; i < 5; i++)
             {
-                redis.redisDatabase.SortedSetAdd("sortedSet", "name_"+ i.ToString(), i+1);
+                redis.redisDatabase.SortedSetAdd("sortedSet", "name_" + i.ToString(), i + 1);
             }
 
             Console.WriteLine("length : " + redis.redisDatabase.SortedSetLength("sortedSet"));
 
-            
+
             Console.WriteLine(string.Join(",\n", redis.redisDatabase.SortedSetScan("sortedSet")));
 
             Console.WriteLine("name_2 Rank > " + redis.redisDatabase.SortedSetRank("sortedSet", "name_2"));
             Console.WriteLine("=========== sorted Set - SortedSetIncrement");
             redis.redisDatabase.SortedSetIncrement("sortedSet", "name_2", 100);
-            
+
 
             Console.WriteLine("=========== sorted Set - Rank Ascending");
             var set3 = redis.redisDatabase.SortedSetRangeByRank("sortedSet", 0, -1, order: Order.Ascending);
-            foreach(var s in set3)
+            foreach (var s in set3)
             {
                 Console.WriteLine(s);
             }
@@ -136,7 +146,7 @@ namespace SampleProject
             Console.WriteLine("name_2 Rank > " + redis.redisDatabase.SortedSetRank("sortedSet", "name_2"));
 
             Console.WriteLine("=========== sorted Set- Score Descending");
-            var set4 = redis.redisDatabase.SortedSetRangeByScore("sortedSet", 1, order:Order.Descending);
+            var set4 = redis.redisDatabase.SortedSetRangeByScore("sortedSet", 1, order: Order.Descending);
             foreach (var s in set4)
             {
                 Console.WriteLine(s);
@@ -147,7 +157,7 @@ namespace SampleProject
             Console.WriteLine(string.Join(",\n", redis.redisDatabase.SortedSetScan("sortedSet")));
 
             Console.WriteLine("=========== sorted Set- RankWithScores Descending take 2");
-            foreach (var k in redis.redisDatabase.SortedSetRangeByRankWithScores("sortedSet", 0, -1, order:Order.Descending).Take(2))
+            foreach (var k in redis.redisDatabase.SortedSetRangeByRankWithScores("sortedSet", 0, -1, order: Order.Descending).Take(2))
             {
                 var keyword = k.ToString().Split(":")[0];
                 var date = k.ToString().Split(":")[1];
@@ -161,9 +171,9 @@ namespace SampleProject
                 var date = k.ToString().Split(":")[1];
                 Console.WriteLine(keyword + ">" + date);
             }
-
-
-
         }
+
+
+      
     }
 }
