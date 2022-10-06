@@ -18,10 +18,8 @@ namespace SampleProject
             string pass = Config.redis_pass;
             string db = Config.redis_default_db;
 
+            RedisConnect redis = new RedisConnect(ip, port, pass, db);
 
-            RedisSample redis = new RedisSample(ip, port, pass, db);
-
-            
             RedisString(redis);
 
             Redishash(redis);
@@ -31,7 +29,7 @@ namespace SampleProject
         }
 
 
-        public static void RedisString(RedisSample redis)
+        public static void RedisString(RedisConnect redis)
         {
 
             Console.WriteLine("########### string type ###########");
@@ -49,7 +47,7 @@ namespace SampleProject
         }
 
 
-        public static void Redishash(RedisSample redis)
+        public static void Redishash(RedisConnect redis)
         {
 
             HashEntry[] hash =
@@ -100,7 +98,7 @@ namespace SampleProject
         }
 
 
-        public static void RedisSet(RedisSample redis)
+        public static void RedisSet(RedisConnect redis)
         {
             Console.WriteLine("########### set type ###########");
             redis.redisDatabase.SetAdd("set", "comment1");

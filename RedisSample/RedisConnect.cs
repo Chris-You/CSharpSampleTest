@@ -5,13 +5,13 @@ using StackExchange.Redis;
 
 namespace SampleProject
 {
-    public class RedisSample
+    public class RedisConnect
     {
         private ConnectionMultiplexer _conntction;
         public IDatabase redisDatabase;
         public IServer redisServer;
 
-        public RedisSample(string host, string port, string pass, string db)
+        public RedisConnect(string host, string port, string pass, string db)
         {
             this._conntction = ConnectionMultiplexer.Connect(host + ":" + port + ",password=" + pass+ ",DefaultDatabase=" + db);
             if (_conntction.IsConnected)
