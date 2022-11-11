@@ -21,7 +21,6 @@ namespace SampleProject
             }
         }
 
-
         public void RedisString()
         {
 
@@ -38,7 +37,6 @@ namespace SampleProject
             Console.WriteLine("string del after >" + redisDatabase.StringGet("stringkey"));
 
         }
-
 
         public void Redishash()
         {
@@ -89,7 +87,6 @@ namespace SampleProject
             }
 
         }
-
 
         public void RedisSet()
         {
