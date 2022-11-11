@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 
+
 namespace GrpcServer
 {
     public class GreeterService : Greeter.GreeterBase
@@ -22,5 +23,24 @@ namespace GrpcServer
                 Message = "Hello " + request.Name
             });
         }
+
+        public override Task<MessageReply> SayMessage(MessageRequest request, ServerCallContext context)
+        {
+            return Task.FromResult(new MessageReply
+            {
+                Message = "Hello " + request.Message,
+                Address = "Hello " + request.Address,
+            }) ;
+        }
+        /*
+        public override Task<PersonReply> PersonProc(PersonRequest request, ServerCallContext context)
+        {
+            return Task.FromResult(new PersonReply
+            {
+                Message = "Hello " + request.Message,
+                Address = "Hello " + request.Address,
+            });
+        }
+        */
     }
 }

@@ -1,6 +1,8 @@
 ﻿@model GrcpClient.Controllers.HelloReply
 @{
     ViewData["Title"] = "gRPC";
+
+    var message = ViewBag.Message as GrcpClient.Controllers.MessageReply;
 }
 
 <div class="text-center">
@@ -9,4 +11,13 @@
         @Model.Message
     </h1>
     
+    <h1>
+        <div>
+            @message.Message
+        </div>
+        <div>
+            @message.Address
+        </div>
+    </h1>
+
 </div>

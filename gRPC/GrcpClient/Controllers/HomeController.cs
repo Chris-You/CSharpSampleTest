@@ -38,6 +38,11 @@ namespace GrcpClient.Controllers
             var client = new Greeter.GreeterClient(channel);
             var reply = client.SayHello(
                               new HelloRequest { Name = "client hello" });
+
+            var message = client.SayMessage(new MessageRequest { Address = "seoul City", Message="my message"});
+
+            ViewBag.Message = message;
+
             return View(reply);
         }
 
