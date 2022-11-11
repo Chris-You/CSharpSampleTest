@@ -21,6 +21,8 @@ namespace CSharpTest
 
         public override bool Equals(object obj) => Equals(obj as Student);
         public override int GetHashCode() => (grade, name).GetHashCode();
+
+
     }
 
     class Collection
