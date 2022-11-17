@@ -2,7 +2,6 @@
 using DesignPattern.Stratage.Duck;
 using DesignPattern.Stratage.Robot;
 using DesignPattern.Stratage.Payment;
-
 //using DesignPattern.Factory;
 
 namespace DesignPattern
@@ -11,7 +10,6 @@ namespace DesignPattern
     {
         static void Main(string[] args)
         {
-
             /*
             using (PaymentFactory card = new CardFactory())
             {
