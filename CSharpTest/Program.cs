@@ -10,15 +10,28 @@ namespace CSharpTest
     {
         static void Main(string[] args)
         {
-
             Collection collection = new Collection();
-
 
             // collection.Sort();
 
             //collection.Filter();
 
-            collection.Sets();
+            //collection.Sets();
+
+            //collection.Divid();
+
+            //collection.Quantifier();
+
+            //collection.Create();
+
+            //collection.Join();
+            //collection.Aggregation();
+
+            //collection.Select();
+
+            collection.Element();
+
+            //collection.DictionaryVsLookup();
 
         }
 
