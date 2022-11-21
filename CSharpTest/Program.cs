@@ -11,9 +11,19 @@ namespace CSharpTest
         static void Main(string[] args)
         {
 
-            Collection collection = new Collection();
+            FileAndDirectory fnd = new FileAndDirectory();
 
-            // collection.Sort();
+            //fnd.FileTest();
+
+
+            fnd.DirectoryTest();
+
+
+
+
+            //Collection collection = new Collection();
+
+            //collection.Sort();
 
             //collection.Filter();
 
@@ -26,11 +36,12 @@ namespace CSharpTest
             //collection.Create();
 
             //collection.Join();
+
             //collection.Aggregation();
 
             //collection.Select();
 
-            collection.Element();
+            //collection.Element();
 
             //collection.DictionaryVsLookup();
 

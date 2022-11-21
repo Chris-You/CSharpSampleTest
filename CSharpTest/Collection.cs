@@ -186,7 +186,7 @@ namespace CSharpTest
             var teacher = teachers.ToDictionary(teacher => teacher.grade);
 
             // key 등록 Exception 발생
-            var dictionary = students.ToDictionary(student => student.grade, student => student.grade + ":" + student.name);
+            //var dictionary = students.ToDictionary(student => student.grade, student => student.grade + ":" + student.name);
 
 
             Console.WriteLine(lookup[3]);
@@ -194,7 +194,7 @@ namespace CSharpTest
 
 
             // 없는 Key 참조 예외 발생
-            Console.WriteLine(teacher[10]);
+            //Console.WriteLine(teacher[10]);
 
         }
 
