@@ -3,6 +3,7 @@ using DesignPattern.Stratage.Duck;
 using DesignPattern.Stratage.Robot;
 using DesignPattern.Stratage.Payment;
 //using DesignPattern.Factory;
+using DesignPattern.Singleton;
 
 namespace DesignPattern
 {
@@ -28,8 +29,14 @@ namespace DesignPattern
             */
 
 
+            Singleton.Singleton single = Singleton.Singleton.getInstance();
 
-            
+            Singleton.Singleton single2 = Singleton.Singleton.getInstance();
+
+            Console.WriteLine(single);
+            Console.WriteLine(single2);
+
+
             using (Payment card = new CardPayment())
             {
                 card.PayDisplay();
