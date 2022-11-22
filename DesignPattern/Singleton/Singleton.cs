@@ -6,7 +6,7 @@ namespace DesignPattern.Singleton
 {
     public class Singleton
     {
-        public static Singleton instance = new Singleton();
+        private static Singleton instance = new Singleton();
 
         private Singleton()
         {
@@ -22,7 +22,6 @@ namespace DesignPattern.Singleton
 
             return instance;
         }
-
 
     }
 }
