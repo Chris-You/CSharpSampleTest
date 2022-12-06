@@ -3,7 +3,7 @@
 namespace WebApplicationMVC.Transaction
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public  class TransactionAttribute : Attribute
+    public class TransactionAttribute : Attribute
     {
     }
 }

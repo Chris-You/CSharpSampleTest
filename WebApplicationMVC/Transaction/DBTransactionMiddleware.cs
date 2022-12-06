@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System.Data;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -27,7 +24,6 @@ namespace WebApplicationMVC.Transaction
             //    return;
             //}
 
-
             // If action is not decorated with TransactionAttribute then skip opening transaction
             var endpoint = httpContext.Features.Get<IEndpointFeature>()?.Endpoint;
             var attribute = endpoint?.Metadata.GetMetadata<TransactionAttribute>();
@@ -36,8 +32,6 @@ namespace WebApplicationMVC.Transaction
                 await _next(httpContext);
                 return;
             }
-
-
 
             IDbTransaction transaction = null;
 
@@ -53,15 +47,12 @@ namespace WebApplicationMVC.Transaction
             {
                 transaction?.Dispose();
             }
-
         }
     }
-
 
     public static class MiddlewareExtensions
     {
         public static IApplicationBuilder UseDbTransaction(this IApplicationBuilder app)
             => app.UseMiddleware<DbTransactionMiddleware>();
     }
-
 }

@@ -1,11 +1,5 @@
-﻿using System;
-using Dapper;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.Data;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 
 namespace WebApplicationMVC.Transaction
 {

@@ -1,33 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WebApplicationMVC.Models;
-using Microsoft.Extensions.Configuration;
 using System.Transactions;
-using Dapper;
-using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using WebApplicationMVC.Models;
 
 namespace WebApplicationMVC.Services
 {
-
     public interface IDatabaseService
     {
         IEnumerable<LogModel> GetLogAll();
+
         int InsLog();
+
         int InsLogTran();
     }
 
     public class DatabaseService : IDatabaseService
     {
-
         private RepositoryBase repository;
 
         public DatabaseService(IConfiguration config)
         {
             repository = new RepositoryBase(config);
         }
-
 
         public IEnumerable<LogModel> GetLogAll()
         {
@@ -36,13 +31,11 @@ namespace WebApplicationMVC.Services
             return list;
         }
 
-
         public int InsLog()
         {
             int ret = 0;
             using (var tran = new TransactionScope())
             {
-
                 try
                 {
                     // log ins
@@ -54,17 +47,13 @@ namespace WebApplicationMVC.Services
                 catch (Exception ex)
                 {
                     // roll the transaction back
-                    // logging 
+                    // logging
                     // handle the error however you need to.
-
-                    
-
                 }
             }
 
             using (var tran = new TransactionScope())
             {
-
                 try
                 {
                     // log ins
@@ -76,14 +65,10 @@ namespace WebApplicationMVC.Services
                 catch (Exception ex)
                 {
                     // roll the transaction back
-                    // logging 
+                    // logging
                     // handle the error however you need to.
-
-
-
                 }
             }
-
 
             return ret;
         }
@@ -96,27 +81,15 @@ namespace WebApplicationMVC.Services
                 // log ins
                 ret = repository.InsLog();
                 ret = repository.InsLogError();
-
-
-                
-
             }
             catch (Exception ex)
             {
                 // roll the transaction back
-                // logging 
+                // logging
                 // handle the error however you need to.
-
-
-
             }
 
             return ret;
         }
-
     }
-
-
-    
-
 }

@@ -1,9 +1,8 @@
 ﻿using System;
-using Dapper;
-using System.Configuration;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Collections.Generic;
+using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
@@ -14,14 +13,13 @@ namespace WebApplicationMVC.Services
         private string _connectionString = string.Empty;
         private IDbConnection _connection = null;
         private IConfiguration _config;
+
         public RepositoryBase(IConfiguration config)
         {
             _config = config;
 
             _connectionString = _config.GetConnectionString("dtpia_dev");
-            
         }
-
 
         public IDbConnection Connection
         {
@@ -44,14 +42,11 @@ namespace WebApplicationMVC.Services
             GC.SuppressFinalize(this);
         }
 
-
         public IEnumerable<T> Query<T>(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
         {
             var results = Connection.Query<T>(sql, param, null, true, commandTimeout, commandType);
             return results ?? new List<T>();
         }
-
-
 
         public T QuerySingle<T>(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
         {
@@ -72,8 +67,6 @@ namespace WebApplicationMVC.Services
         {
             return Connection.Execute(sql, param as object, transaction, commandTimeout, CommandType.StoredProcedure);
         }
-
-
 
         public int InsLog()
         {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApplicationMVC.Models;
@@ -24,7 +20,6 @@ namespace WebApplicationMVC.Controllers
 
         public IActionResult Index()
         {
-
             var list = _dbService.GetLogAll();
 
             return View();
@@ -32,14 +27,12 @@ namespace WebApplicationMVC.Controllers
 
         public IActionResult Privacy()
         {
-
             var ret = _dbService.InsLog();
 
             //var retError = _dbService.InsLogError();
 
             return View();
         }
-
 
         [TransactionAttribute]
         public IActionResult Tran()
@@ -54,8 +47,5 @@ namespace WebApplicationMVC.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-
-
     }
 }
