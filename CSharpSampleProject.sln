@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodingTest.Programers", "Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperHelper", "DapperHelper\DapperHelper.csproj", "{95D9A6C3-525C-45A3-AD1D-D835C92CF542}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionScopeMVC", "WebApplicationMVC\TransactionScopeMVC.csproj", "{CF7C1A56-3CF1-4903-8DE6-0260781BC8BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransactionScopeMVC", "WebApplicationMVC\TransactionScopeMVC.csproj", "{CF7C1A56-3CF1-4903-8DE6-0260781BC8BA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWTASPNetCore", "jwt-aspnetcore\JWTASPNetCore.csproj", "{5DAC335D-2141-4E3F-855F-9766252A3E95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,10 @@ Global
 		{CF7C1A56-3CF1-4903-8DE6-0260781BC8BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF7C1A56-3CF1-4903-8DE6-0260781BC8BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF7C1A56-3CF1-4903-8DE6-0260781BC8BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DAC335D-2141-4E3F-855F-9766252A3E95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DAC335D-2141-4E3F-855F-9766252A3E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DAC335D-2141-4E3F-855F-9766252A3E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DAC335D-2141-4E3F-855F-9766252A3E95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
