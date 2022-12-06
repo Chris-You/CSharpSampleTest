@@ -57,6 +57,8 @@ namespace DesignPattern
             */
 
 
+            ServiceFactory.
+
 
             var array = new string[] { "say", "hello", "task", "!!" };
             
@@ -82,8 +84,6 @@ namespace DesignPattern
 
             Console.WriteLine(taskValue.Result);
             Console.WriteLine("======");
-
-            
 
 
             //using (Payment card = new CardPayment())
