@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 
 namespace WebAPISampleNet5.Controllers
 {
+    /*
     [Route("api/[controller]")]
     [ApiController]
     public class EmployeeController : ControllerBase
@@ -37,6 +38,9 @@ namespace WebAPISampleNet5.Controllers
         [HttpGet]
         public IActionResult GetList()
         {
+
+
+
             if (employees.Count() == 0)
             {
                 return NoContent();
@@ -189,4 +193,5 @@ namespace WebAPISampleNet5.Controllers
         }
 
     }
+    */
 }

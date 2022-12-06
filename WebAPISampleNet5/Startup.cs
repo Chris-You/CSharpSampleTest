@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using WebAPISampleNet5.Services;
 
 namespace WebAPISampleNet5
 {
@@ -26,7 +30,6 @@ namespace WebAPISampleNet5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers(mvcOptions =>
             {
                 mvcOptions.InputFormatters.Add(new TextSingleValueFormatter());
@@ -36,6 +39,15 @@ namespace WebAPISampleNet5
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPISampleNet5", Version = "v1" });
             });
+
+
+            services.AddSingleton<IServiceSingleton, ServiceSingleton>();
+            services.AddScoped<IServiceScoped, ServiceScoped>();
+            services.AddTransient<IServiceTransient, ServiceTransient>();
+
+            services.AddScoped<IDatabaseService, DatabaseService>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +55,9 @@ namespace WebAPISampleNet5
         {
 
             //app.UseMiddleware<EnableRequestBodyBufferingMiddleware>();
+
+
+
 
             if (env.IsDevelopment())
             {
