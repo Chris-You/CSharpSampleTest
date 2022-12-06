@@ -9,13 +9,70 @@ namespace CodingTest.Programers
         static void Main(string[] args)
         {
 
-            // 만들수 있는 모든 숫자를 만든다
+            //solution7(3, new int[] {10, 100, 20, 150, 1, 100, 200});
+            //solution(4, new int[] { 0, 300, 40, 300, 20, 70, 150, 50, 500, 1000 });
 
+
+            solution(3, 4, new int[] { 1, 2, 3, 1, 2, 3, 1 });
+            solution(4, 3, new int[] { 4, 1, 2, 2, 4, 4, 4, 4, 1, 2, 4, 2 });
         }
 
-        public int solution(int[] priorities, int location)
+        public static int solution(int k, int m, int[] score)
         {
             int answer = 0;
+
+            Array.Sort(score);
+            List<List<int>> packing = new List<List<int>>();
+            bool isAdd = false;
+            /*
+            for(var i=0; i< score.Length; i++)
+            {
+                isAdd = false;
+                int[] arr = new int[m];
+                for(var j=0; j<m; j++ )
+                {
+                    arr[j] = score[i];
+                    if(j == m-1)
+                    {
+                        isAdd = true;
+                    }
+                }
+                if(isAdd) packing.Add(arr);
+            }
+            */
+            Console.WriteLine(string.Join(",", score));
+
+            List<int> arr = new List<int>();
+            int idx = 0;
+            for (var i = 0; i < score.Length; i++)
+            {
+                arr.Add(score[i]);
+
+                if (arr.Count() == m)
+                {
+                    packing.Add(arr);
+                    arr = new List<int>();
+                    idx = 0;
+                }
+            }
+
+
+            return answer;
+        }
+
+        public static int[] solution7(int k, int[] score)
+        {
+            int[] answer = new int[score.Length];
+            List<int> honer = new List<int>();
+
+            for(var i = 0; i< score.Length; i++)
+            {
+                honer.Add(score[i]);
+                honer = honer.OrderByDescending(sco => sco).Take(k).ToList();
+                answer[i] = honer.Min();
+            }
+            
+
             return answer;
         }
 
