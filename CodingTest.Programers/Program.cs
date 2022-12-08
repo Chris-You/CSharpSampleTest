@@ -13,8 +13,62 @@ namespace CodingTest.Programers
             //solution(4, new int[] { 0, 300, 40, 300, 20, 70, 150, 50, 500, 1000 });
 
 
-            solution(3, 4, new int[] { 1, 2, 3, 1, 2, 3, 1 });
-            solution(4, 3, new int[] { 4, 1, 2, 2, 4, 4, 4, 4, 1, 2, 4, 2 });
+            //solution(3, 4, new int[] { 1, 2, 3, 1, 2, 3, 1 });
+            //solution(4, 3, new int[] { 4, 1, 2, 2, 4, 4, 4, 4, 1, 2, 4, 2 });
+
+
+            
+        }
+
+
+        /// <summary>
+        /// https://school.programmers.co.kr/learn/courses/30/lessons/118666
+        /// 겅격 유형 검사하기
+        /// Console.WriteLine(solution(new string[] { "AN", "CF", "MJ", "RT", "NA" }, new int[] { 5, 3, 2, 7, 5 }));
+        /// Console.WriteLine(solution(new string[] { "TR", "RT", "TR" }, new int[] {7,1,3}));
+        /// </summary>
+        /// <param name="survey"></param>
+        /// <param name="choices"></param>
+        /// <returns></returns>
+        public static string solution(string[] survey, int[] choices)
+        {
+            Dictionary<char, int> type = new Dictionary<char, int>();
+            
+            for(var i=0; i< survey.Length; i++)
+            {
+                int prefix = 0;
+                int score = 0;
+                if (choices[i] > 4) 
+                    prefix = 1;
+
+                if      (choices[i] == 1 || choices[i] == 7) score = 3;
+                else if (choices[i] == 2 || choices[i] == 6) score = 2;
+                else if (choices[i] == 3 || choices[i] == 5) score = 1;
+
+                var key = survey[i].ToString()[prefix];
+
+                if (type.ContainsKey(key) == false)
+                    type.Add(key, score);
+                else
+                    type[key] = type[key] + score;
+            }
+
+            type.TryGetValue('R', out int rValue);
+            type.TryGetValue('T', out int tValue);
+            type.TryGetValue('C', out int cValue);
+            type.TryGetValue('F', out int fValue);
+            type.TryGetValue('J', out int jValue);
+            type.TryGetValue('M', out int mValue);
+            type.TryGetValue('A', out int aValue);
+            type.TryGetValue('N', out int nValue);
+
+            string answer = "";
+            answer += (rValue >= tValue ? "R" : "T");
+            answer += (cValue >= fValue ? "C" : "F");
+            answer += (jValue >= mValue ? "J" : "M");
+            answer += (aValue >= nValue ? "A" : "N");
+
+            return answer;
         }
 
         public static int solution(int k, int m, int[] score)
