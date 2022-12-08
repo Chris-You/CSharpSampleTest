@@ -16,8 +16,6 @@ namespace CodingTest.Programers
             //solution(3, 4, new int[] { 1, 2, 3, 1, 2, 3, 1 });
             //solution(4, 3, new int[] { 4, 1, 2, 2, 4, 4, 4, 4, 1, 2, 4, 2 });
 
-
-            
         }
 
 
