@@ -14,7 +14,18 @@ namespace WebApplicationMVC
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+
+#if DEBUG
                     webBuilder.UseStartup<Startup>();
+
+#else
+                    webBuilder
+                    .UseStartup<Startup>()
+                    .UseKestrel(options =>
+                    {
+                        options.Limits.MaxRequestBodySize = 524288000;
+                    });
+#endif 
                 });
     }
 }

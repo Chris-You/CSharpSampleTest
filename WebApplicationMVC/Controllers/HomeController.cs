@@ -1,4 +1,7 @@
 ﻿using System.Diagnostics;
+using System.IO;
+using System.Threading;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApplicationMVC.Models;
@@ -20,14 +23,14 @@ namespace WebApplicationMVC.Controllers
 
         public IActionResult Index()
         {
-            var list = _dbService.GetLogAll();
+            //var list = _dbService.GetLogAll();
 
             return View();
         }
 
         public IActionResult Privacy()
         {
-            var ret = _dbService.InsLog();
+            //var ret = _dbService.InsLog();
 
             //var retError = _dbService.InsLogError();
 
@@ -41,6 +44,15 @@ namespace WebApplicationMVC.Controllers
 
             return new JsonResult(new { result = ret });
         }
+
+        [HttpPost]
+        public IActionResult Upload(IFormFile file)
+        {
+            Thread.Sleep(3000);
+
+            return new JsonResult(new { result = "ok" });
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

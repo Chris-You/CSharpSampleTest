@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,8 +25,14 @@ namespace WebApplicationMVC
 
             services.AddScoped<IDatabaseService, DatabaseService>();
 
-            Configuration.GetConnectionString("dtpia_dev");
+            
             services.AddScoped((_) => new SqlConnectionProvider(Configuration.GetConnectionString("dtpia_dev")));
+
+            services.Configure<FormOptions>(options =>
+            {
+                // 500 MB ·Î ¼¼ÆÃ
+                options.MultipartBodyLengthLimit = 524288000;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

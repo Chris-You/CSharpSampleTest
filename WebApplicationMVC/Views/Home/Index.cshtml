@@ -2,7 +2,87 @@
 	ViewData["Title"] = "Home Page";
 }
 
+
+<script type="text/javascript">
+
+function uploadfile() {
+
+	// 등록할 파일 리스트를 formData로 데이터 입력
+	var form = $('#uploadFrm')[0];
+	var formData = new FormData(form);
+	
+
+	try {
+		$.ajax({
+			url: "/home/upload",
+			data: formData,
+			type: 'POST',
+			processData: false,
+			contentType: false,
+			dataType: 'json',
+			cache: false,
+			async:true,
+			xhr: function () {
+				var xhr = new window.XMLHttpRequest();
+				xhr.upload.addEventListener("progress", function (evt) {
+					if (evt.lengthComputable) {
+						var percentComplete = Math.floor((evt.loaded / evt.total) * 100);
+						if (percentComplete >= 100) {
+							$("#uploadText > div").text("업로드 파일 저장중... 잠시만 기다려주세요.")
+						}
+						var percent = percentComplete + '%';
+						var bar = $(".progress-bar");
+						bar.css("width", percent);
+						bar.text(percent);
+					}
+				}, false);
+				return xhr;
+			},
+
+
+			beforeSend: function (xhr, setting) {
+				$("#uploadText").show();
+			},
+			complete: function (xhr, setting) {
+				
+			},
+			success: function (result) {
+				$("#uploadText > div").text("업로드 완료");
+			},
+			error: function (xhr, status, err) {
+				console.log(status)
+				console.log(err)
+			}
+
+		});
+	}
+	catch (e) {
+		//console.log(e);
+						
+	}
+
+}
+
+</script>
+
 <div class="text-center">
-	<h1 class="display-4">Welcome</h1>
-	<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">파일 업로드</h1>
+     <form id="uploadFrm" name="uploadFrm" method="post" action = "/home/upload">
+        <div>
+			<input type="text" name="filename"/>		
+            <input type="file" name="file"/>		
+			<input class="btn btn-primary" type="button" onClick="javascript:uploadfile();" value="업로드" />
+        </div>
+		 
+		<div class="progress">
+		  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+			00%
+		  </div>
+		</div>
+
+		<div id="uploadText" style="text-align:center;margin-top:13px;display:none;">
+			<div>파일 업로드 진행중입니다.</div>
+		</div>
+
+    </form>
 </div>

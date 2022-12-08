@@ -23,7 +23,7 @@ namespace CodingTest.Programers
 
         /// <summary>
         /// https://school.programmers.co.kr/learn/courses/30/lessons/118666
-        /// 겅격 유형 검사하기
+        /// 성격 유형 검사하기
         /// Console.WriteLine(solution(new string[] { "AN", "CF", "MJ", "RT", "NA" }, new int[] { 5, 3, 2, 7, 5 }));
         /// Console.WriteLine(solution(new string[] { "TR", "RT", "TR" }, new int[] {7,1,3}));
         /// </summary>
