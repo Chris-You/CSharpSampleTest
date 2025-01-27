@@ -19,6 +19,8 @@ namespace SampleProject
                                                 Config.redis_pass, 
                                                 Config.redis_default_db);
 
+                                                
+
             redis.RedisString();
 
             redis.Redishash();
